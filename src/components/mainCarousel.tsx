@@ -2,9 +2,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import styled from '@emotion/styled';
 
-const Img = styled.img`
-  height: 700px;
-`;
+import { CarouselItem } from './carouselItem';
 
 const Indicator = styled.div`
   width: 57px;
@@ -42,11 +40,7 @@ export const MainCarousel = () => {
       }}
     >
       {Array.from(Array(4).keys()).map((index) => {
-        return (
-          <div key={index}>
-            <Img src={require(`../assets/pic${index}.png`)} alt={'user'} />
-          </div>
-        );
+        return <CarouselItem index={index} imgSrc={`../assets/pic${index}.png`} />;
       })}
     </Carousel>
   );

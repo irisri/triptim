@@ -7,7 +7,7 @@ import { Filter } from '../components/filter';
 import { MainCarousel } from '../components/mainCarousel';
 
 const RootDiv = styled(Box)`
-  max-width: 375px;
+  max-width: 430px;
   margin: 0 auto;
   height: 100vh;
 `;
