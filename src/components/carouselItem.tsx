@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import arrow from '../assets/arrow.svg';
 
@@ -10,6 +11,7 @@ import pic3 from '../assets/pic3.png';
 
 interface StyleProps {
   imgSrc: string;
+  isUserProfile: boolean;
 }
 
 const RootCarouselItem = styled.div`
@@ -18,6 +20,8 @@ const RootCarouselItem = styled.div`
   display: flex;
   justify-content: center;
   background-image: url(${(props: StyleProps) => props.imgSrc});
+  border-bottom-left-radius: ${(props: StyleProps) => (props.isUserProfile ? '60px 60px' : 0)};
+  border-bottom-right-radius: ${(props: StyleProps) => (props.isUserProfile ? '60px 60px' : 0)};
 `;
 
 const CarouselFooter = styled.div`
@@ -44,22 +48,28 @@ const FotterButton = styled.button`
   color: white;
   margin-bottom: 8px;
   padding: 8px 10px;
+  cursor: pointer;
 `;
 
 interface CarouselItemProps {
   index: number;
-  imgSrc: string;
+  isUserProfile: boolean;
 }
 
-export const CarouselItem = ({ index }: CarouselItemProps) => {
+export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
+  let navigate = useNavigate();
+
   const imgList = [pic0, pic1, pic2, pic3];
+
   return (
-    <RootCarouselItem imgSrc={imgList[index]}>
-      <CarouselFooter>
-        <FotterButton>
-          See profile <img src={arrow} alt='open' />
-        </FotterButton>
-      </CarouselFooter>
+    <RootCarouselItem imgSrc={imgList[index]} isUserProfile={isUserProfile}>
+      {!isUserProfile ? (
+        <CarouselFooter>
+          <FotterButton onClick={() => navigate(`/user/${1}`)}>
+            See profile <img src={arrow} alt='open' />
+          </FotterButton>
+        </CarouselFooter>
+      ) : null}
     </RootCarouselItem>
   );
 };

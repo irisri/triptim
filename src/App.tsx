@@ -3,11 +3,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
 import { MainScreen } from './screens/mainScreen';
+import { UserProfile } from './screens/userProfile';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainScreen />,
+  },
+  {
+    path: '/user/:userId',
+    element: <UserProfile />,
   },
 ]);
 

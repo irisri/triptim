@@ -11,7 +11,7 @@ const Indicator = styled.div`
   border-radius: 13px;
 `;
 
-export const MainCarousel = () => {
+export const MainCarousel = ({ isUserProfile = false }: { isUserProfile?: boolean }) => {
   return (
     <Carousel
       autoPlay={false}
@@ -40,7 +40,9 @@ export const MainCarousel = () => {
       }}
     >
       {Array.from(Array(4).keys()).map((index) => {
-        return <CarouselItem index={index} imgSrc={`../assets/pic${index}.png`} />;
+        return (
+          <CarouselItem index={index} key={isUserProfile ? `${index}-${index}` : index} isUserProfile={isUserProfile} />
+        );
       })}
     </Carousel>
   );
