@@ -1,10 +1,13 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
+
+import { MainScreen } from './screens/mainScreen';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div>Hello world!</div>,
+    path: '/',
+    element: <MainScreen />,
   },
 ]);
 
