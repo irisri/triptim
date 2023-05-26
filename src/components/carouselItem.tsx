@@ -2,14 +2,21 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import arrow from '../assets/arrow.svg';
+import { tagData } from '../utils/date';
 
+import { UserInformationHeader } from './userInformationHeader';
+import { DataTag } from './dateTag';
+import { HeasrtIcon } from '../assets/heasrtIcon';
+import { MessageIcon } from '../assets/messageIcon';
+
+import arrow from '../assets/arrow.svg';
+import addProfileImg from '../assets/addProfileImg.svg';
 import pic0 from '../assets/pic0.png';
 import pic1 from '../assets/pic1.png';
 import pic2 from '../assets/pic2.png';
 import pic3 from '../assets/pic3.png';
 
-interface StyleProps {
+interface StylePropsRootCarouse {
   imgSrc: string;
   isUserProfile: boolean;
 }
@@ -19,18 +26,63 @@ const RootCarouselItem = styled.div`
   width: 430px;
   display: flex;
   justify-content: center;
-  background-image: url(${(props: StyleProps) => props.imgSrc});
-  border-bottom-left-radius: ${(props: StyleProps) => (props.isUserProfile ? '60px 60px' : 0)};
-  border-bottom-right-radius: ${(props: StyleProps) => (props.isUserProfile ? '60px 60px' : 0)};
+  background-image: url(${(props: StylePropsRootCarouse) => props.imgSrc});
+  border-bottom-left-radius: ${(props: StylePropsRootCarouse) => (props.isUserProfile ? '60px 60px' : 0)};
+  border-bottom-right-radius: ${(props: StylePropsRootCarouse) => (props.isUserProfile ? '60px 60px' : 0)};
 `;
 
-const CarouselFooter = styled.div`
+const CarouselInformation = styled.div`
+  position: absolute;
+  bottom: 0;
+  padding: 0 20px;
+`;
+
+const UserInformationRoot = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 89px;
+`;
+
+const TagsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 48px;
+`;
+
+const ActionsMenuDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const ActionMenuDiv = styled.div`
+  margin-bottom: 9px;
+`;
+
+const Padding = styled.div`
+  padding: 10px 7px;
+  display: flex;
+`;
+
+const Img = styled.img`
+  width: 40px;
+`;
+
+const ActionMenuText = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+  margin-top: 3px;
+  text-align: center;
+`;
+
+const Footerdiv = styled.div`
   width: 390px;
   margin: 0 auto;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   height: fit-content;
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: center;
 `;
@@ -64,11 +116,47 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
   return (
     <RootCarouselItem imgSrc={imgList[index]} isUserProfile={isUserProfile}>
       {!isUserProfile ? (
-        <CarouselFooter>
-          <FotterButton onClick={() => navigate(`/user/${1}`)}>
-            See profile <img src={arrow} alt='open' />
-          </FotterButton>
-        </CarouselFooter>
+        <CarouselInformation>
+          <UserInformationRoot>
+            <div>
+              <UserInformationHeader userAge={31} userName={'Anna Winter'} />
+              <TagsDiv>
+                {tagData.map((tag, index) => (
+                  <DataTag tag={tag} key={tag.iconName} isLast={tagData.length - 1 === index} isProfile={false} />
+                ))}
+              </TagsDiv>
+            </div>
+
+            <div>
+              <ActionsMenuDiv>
+                <ActionMenuDiv>
+                  <Img src={addProfileImg} alt='add profile' />
+                  <ActionMenuText>ADD</ActionMenuText>
+                </ActionMenuDiv>
+
+                <ActionMenuDiv>
+                  <Padding>
+                    <HeasrtIcon color='#fff' />
+                  </Padding>
+                  <ActionMenuText>SAVE</ActionMenuText>
+                </ActionMenuDiv>
+
+                <ActionMenuDiv>
+                  <Padding>
+                    <MessageIcon color='#fff' />
+                  </Padding>
+                  <ActionMenuText>CHAT</ActionMenuText>
+                </ActionMenuDiv>
+              </ActionsMenuDiv>
+            </div>
+          </UserInformationRoot>
+
+          <Footerdiv>
+            <FotterButton onClick={() => navigate(`/user/${1}`)}>
+              See profile <img src={arrow} alt='open' />
+            </FotterButton>
+          </Footerdiv>
+        </CarouselInformation>
       ) : null}
     </RootCarouselItem>
   );
