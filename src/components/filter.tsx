@@ -4,11 +4,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
 
 import { FilterIcon } from '../assets/filterIcon';
 import { CityPicker } from './cityPicker';
 import { DatePickerText } from './datePickerText';
-import moment from 'moment';
 
 const RootFilter = styled.div`
   padding: 12px 0 12px 16px;

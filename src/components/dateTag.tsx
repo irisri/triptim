@@ -19,7 +19,7 @@ const TagDiv = styled.div`
 
 const P = styled.p`
   color: #dadada;
-  padding-left: 8px;
+  padding-left: 4px;
 `;
 
 export const DataTag = ({ tag, isProfile, isLast }: DataTagProps) => {

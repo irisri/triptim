@@ -3,6 +3,11 @@ export interface TagDataProps {
   iconName?: string;
 }
 
+export enum Flight {
+  Departure = 'departure',
+  Landing = 'landing',
+}
+
 export const tagData = [
   {
     text: 'Lives in Israel',
@@ -22,7 +27,7 @@ export const tagData = [
   },
 ];
 
-export const carouseTagData = [
+export const travalTagData = [
   {
     text: 'I feel romantic',
     iconName: '💕',
@@ -46,6 +51,22 @@ export const carouseTagData = [
   {
     text: 'Go to museums',
     iconName: '🖼️',
+  },
+];
+
+export interface FlightInformation {
+  date: string;
+  icon: Flight;
+}
+
+export const flightInformation = [
+  {
+    date: '2024-01-10',
+    icon: Flight.Departure,
+  },
+  {
+    date: '2024-01-15',
+    icon: Flight.Landing,
   },
 ];
 

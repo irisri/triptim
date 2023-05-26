@@ -2,15 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import { tagData } from '../utils/date';
+import { tagData, travalTagData } from '../utils/date';
 
 import { UserInformationHeader } from './userInformationHeader';
+import { ActionMenuCarousel } from './actionMenuCarousel';
+import { Travalformation } from './travalInformatio';
 import { DataTag } from './dateTag';
-import { HeasrtIcon } from '../assets/heasrtIcon';
-import { MessageIcon } from '../assets/messageIcon';
 
 import arrow from '../assets/arrow.svg';
-import addProfileImg from '../assets/addProfileImg.svg';
 import pic0 from '../assets/pic0.png';
 import pic1 from '../assets/pic1.png';
 import pic2 from '../assets/pic2.png';
@@ -40,7 +39,11 @@ const CarouselInformation = styled.div`
 const UserInformationRoot = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 89px;
+  justify-content: space-between;
+`;
+
+const Info = styled.div`
+  max-width: 340px;
 `;
 
 const TagsDiv = styled.div`
@@ -49,33 +52,6 @@ const TagsDiv = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   margin: 16px 0 48px;
-`;
-
-const ActionsMenuDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const ActionMenuDiv = styled.div`
-  margin-bottom: 9px;
-`;
-
-const Padding = styled.div`
-  padding: 10px 7px;
-  display: flex;
-`;
-
-const Img = styled.img`
-  width: 40px;
-`;
-
-const ActionMenuText = styled.p`
-  font-weight: 500;
-  font-size: 14px;
-  color: #fff;
-  margin-top: 3px;
-  text-align: center;
 `;
 
 const Footerdiv = styled.div`
@@ -113,41 +89,43 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
 
   const imgList = [pic0, pic1, pic2, pic3];
 
+  const travalTags =
+    travalTagData.length > 5
+      ? [
+          ...travalTagData.slice(0, 5),
+          {
+            text: '...',
+          },
+        ]
+      : travalTagData;
+
   return (
     <RootCarouselItem imgSrc={imgList[index]} isUserProfile={isUserProfile}>
       {!isUserProfile ? (
         <CarouselInformation>
           <UserInformationRoot>
-            <div>
+            <Info>
               <UserInformationHeader userAge={31} userName={'Anna Winter'} />
-              <TagsDiv>
-                {tagData.map((tag, index) => (
-                  <DataTag tag={tag} key={tag.text} isLast={tagData.length - 1 === index} isProfile={false} />
-                ))}
-              </TagsDiv>
-            </div>
+              {index !== 0 ? (
+                <TagsDiv>
+                  {tagData.map((tag, index) => (
+                    <DataTag tag={tag} key={tag.text} isLast={tagData.length - 1 === index} isProfile={false} />
+                  ))}
+                </TagsDiv>
+              ) : (
+                <>
+                  <Travalformation />
+                  <TagsDiv>
+                    {travalTags.map((tag, index) => (
+                      <DataTag tag={tag} key={tag.text} isLast={tagData.length - 1 === index} isProfile={false} />
+                    ))}
+                  </TagsDiv>
+                </>
+              )}
+            </Info>
 
             <div>
-              <ActionsMenuDiv>
-                <ActionMenuDiv>
-                  <Img src={addProfileImg} alt='add profile' />
-                  <ActionMenuText>ADD</ActionMenuText>
-                </ActionMenuDiv>
-
-                <ActionMenuDiv>
-                  <Padding>
-                    <HeasrtIcon color='#fff' />
-                  </Padding>
-                  <ActionMenuText>SAVE</ActionMenuText>
-                </ActionMenuDiv>
-
-                <ActionMenuDiv>
-                  <Padding>
-                    <MessageIcon color='#fff' />
-                  </Padding>
-                  <ActionMenuText>CHAT</ActionMenuText>
-                </ActionMenuDiv>
-              </ActionsMenuDiv>
+              <ActionMenuCarousel />
             </div>
           </UserInformationRoot>
 
