@@ -122,7 +122,7 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
               <UserInformationHeader userAge={31} userName={'Anna Winter'} />
               <TagsDiv>
                 {tagData.map((tag, index) => (
-                  <DataTag tag={tag} key={tag.iconName} isLast={tagData.length - 1 === index} isProfile={false} />
+                  <DataTag tag={tag} key={tag.text} isLast={tagData.length - 1 === index} isProfile={false} />
                 ))}
               </TagsDiv>
             </div>

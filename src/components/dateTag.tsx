@@ -11,7 +11,6 @@ interface DataTagProps {
   isProfile: boolean;
 }
 
-
 const TagDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,7 +25,7 @@ const P = styled.p`
 export const DataTag = ({ tag, isProfile, isLast }: DataTagProps) => {
   return (
     <TagDiv key={tag.text}>
-      <TagText text={tag.text} isProfile={isProfile} />
+      <TagText text={tag.text} icon={tag.iconName} isProfile={isProfile} />
       {isProfile && !isLast ? <P>|</P> : null}
     </TagDiv>
   );
