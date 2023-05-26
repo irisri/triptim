@@ -35,9 +35,6 @@ export const MainCarousel = ({ isUserProfile = false }: { isUserProfile?: boolea
       }}
       IndicatorIcon={<Indicator />}
       duration={500}
-      next={(now?: number, previous?: number) => {
-        console.log(now, previous);
-      }}
     >
       {Array.from(Array(4).keys()).map((index) => {
         return (

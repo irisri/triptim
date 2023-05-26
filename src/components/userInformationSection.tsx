@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { tagData, eventTagData } from '../utils/date';
@@ -10,7 +10,7 @@ import { EventTag } from '../components/styledComponent/eventTag.styled';
 import friends from '../assets/friends.svg';
 
 const Container = styled.div`
-  padding: 0px 16px;
+  padding: 0 16px 30px 0;
   border-bottom: 1px solid #dadada;
 `;
 
@@ -27,8 +27,9 @@ const TagsDiv = styled.div`
   margin-bottom: 24px;
 `;
 
-const FriendsDiv = styled.div`
+const FriendsButton = styled.button`
   background-color: #f9f6f6;
+  border: none;
   font-weight: 400;
   font-size: 14px;
   color: #878893;
@@ -37,10 +38,11 @@ const FriendsDiv = styled.div`
   align-items: center;
   gap: 4px;
   border-radius: 10px;
-  width: inherit;
+  width: 100%;
   padding: 6.5px;
   justify-content: center;
   margin-bottom: 16px;
+  cursor: pointer;
 `;
 
 const AboutDiv = styled.div`
@@ -71,7 +73,22 @@ const EventTags = styled.div`
   gap: 8px;
 `;
 
+interface UserFreindsProps {
+  id: number;
+  username: string;
+  email: number;
+}
+
 export const UserInformationSection = () => {
+  const [userFreinds, setUserFreinds] = useState<UserFreindsProps[]>([]);
+
+  const getFriends = async () => {
+    const resFreinds = await fetch('https://dummyjson.com/users?limit=133&select=username,email');
+    const freinds = await resFreinds.json();
+
+    setUserFreinds(freinds.users);
+    console.log(freinds.users);
+  };
   return (
     <>
       <Container>
@@ -83,10 +100,10 @@ export const UserInformationSection = () => {
             <DataTag tag={tag} key={tag.iconName} isLast={tagData.length - 1 === index} isProfile={true} />
           ))}
         </TagsDiv>
-        <FriendsDiv>
+        <FriendsButton onClick={getFriends}>
           <img src={friends} alt='friends' />
           <p>113 Friends</p>
-        </FriendsDiv>
+        </FriendsButton>
       </Container>
 
       <Container>
