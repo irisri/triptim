@@ -14,18 +14,21 @@ const SelectStyled = styled(Select)`
   background-color: #7b33d7;
   color: #ffffff;
   border-radius: 34px;
-  & .MuiOutlinedInput-notchedOutline {
-    border: 0;
-  }
   & .MuiSelect-select {
     padding: 6px 32px 6px 24px;
     border: 0;
+    justify-content: center;
+  }
+  & .MuiOutlinedInput-notchedOutline {
+    border: 0;
+  }
+  & .MuiSelect-icon {
+    top: 6px;
   }
 `;
 
 const Img = styled.img`
-  width: 16;
-  cursor: 'pointer';
+  cursor: pointer;
 `;
 
 interface SelectButtonPrps {

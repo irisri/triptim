@@ -123,7 +123,7 @@ export const Filter = () => {
 
   const renderText = useMemo(() => {
     if (date[0] === date[1]) return 'Pick a date';
-    return `${moment(date[0]).format('DD')}-${moment(date[0]).format('DD MMM YYYY')}`;
+    return `${moment(date[0]).format('DD')}-${moment(date[1]).format('DD MMM YYYY')}`;
   }, [date]);
 
   return (
