@@ -2,7 +2,6 @@ import React from 'react';
 import { DEFAULT_COLOR, DEFAULT_BACKGROUND_COLOR } from '../utils/const';
 
 export const AddProfile = ({ color = DEFAULT_COLOR, size = 40, backgroundColor = DEFAULT_BACKGROUND_COLOR }) => {
-  console.log(backgroundColor);
   return (
     <svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
