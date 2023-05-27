@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import { tagData, travalTagData } from '../utils/date';
+import { tagData, travalTagData, TagDataProps } from '../utils/date';
 
 import { UserInformationHeader } from './userInformationHeader';
 import { ActionMenuCarousel } from './actionMenuCarousel';
@@ -89,12 +89,12 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
 
   const imgList = [pic0, pic1, pic2, pic3];
 
-  const travalTags =
+  const travalTags: TagDataProps[] =
     travalTagData.length > 5
       ? [
           ...travalTagData.slice(0, 5),
           {
-            text: '...',
+            iconName: 'more',
           },
         ]
       : travalTagData;
@@ -117,7 +117,12 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
                   <Travalformation />
                   <TagsDiv>
                     {travalTags.map((tag, index) => (
-                      <DataTag tag={tag} key={tag.text} isLast={tagData.length - 1 === index} isProfile={false} />
+                      <DataTag
+                        tag={tag}
+                        key={tag.text ?? tag.iconName}
+                        isLast={tagData.length - 1 === index}
+                        isProfile={false}
+                      />
                     ))}
                   </TagsDiv>
                 </>

@@ -1,5 +1,5 @@
 export interface TagDataProps {
-  text: string;
+  text?: string;
   iconName?: string;
 }
 

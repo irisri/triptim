@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface TagTextProps {
   text: string;
-  icon?: string;
+  icon?: string | JSX.Element;
   isProfile?: boolean;
 }
 
@@ -28,8 +28,8 @@ const Div = styled.div`
 export const TagText = ({ icon, text, isProfile = true }: TagTextProps) => {
   return (
     <Div isProfile={isProfile}>
-      {icon ? <p>{icon}</p> : null}
-      <p>{text}</p>
+      {icon ? typeof icon === 'string' ? <p>{icon}</p> : <>{icon}</> : null}
+      {text ? <p>{text}</p> : null}
     </Div>
   );
 };

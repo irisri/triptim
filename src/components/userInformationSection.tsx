@@ -97,7 +97,12 @@ export const UserInformationSection = () => {
         </RootUserInformationDiv>
         <TagsDiv>
           {tagData.map((tag, index) => (
-            <DataTag tag={tag} key={tag.iconName} isLast={tagData.length - 1 === index} isProfile={true} />
+            <DataTag
+              tag={tag}
+              key={`${tag.iconName}-${index}`}
+              isLast={tagData.length - 1 === index}
+              isProfile={true}
+            />
           ))}
         </TagsDiv>
         <FriendsButton onClick={getFriends}>
