@@ -195,7 +195,7 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
       ) : (
         <div>
           <ProfileDiv>
-            <BackButton>
+            <BackButton onClick={() => navigate(-1)}>
               <img src={back} alt='back' />
             </BackButton>
 
