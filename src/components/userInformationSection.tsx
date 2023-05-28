@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import Dialog from '@mui/material/Dialog';
 
 import { tagData, eventTagData } from '../utils/date';
 
 import { UserInformationHeader } from './userInformationHeader';
+import { FriendList, UserFreindsProps } from './friendList';
 import { DataTag } from './dateTag';
 import { EventTag } from '../components/styledComponent/eventTag.styled';
 
@@ -73,21 +75,16 @@ const EventTags = styled.div`
   gap: 8px;
 `;
 
-interface UserFreindsProps {
-  id: number;
-  username: string;
-  email: number;
-}
-
 export const UserInformationSection = () => {
   const [userFreinds, setUserFreinds] = useState<UserFreindsProps[]>([]);
+  const [open, setOpen] = useState(false);
 
   const getFriends = async () => {
     const resFreinds = await fetch('https://dummyjson.com/users?limit=133&select=username,email');
     const freinds = await resFreinds.json();
 
     setUserFreinds(freinds.users);
-    console.log(freinds.users);
+    setOpen(true);
   };
   return (
     <>
@@ -128,6 +125,10 @@ export const UserInformationSection = () => {
           </EventTags>
         </AboutDiv>
       </Container>
+
+      <Dialog onClose={() => setOpen(false)} open={open}>
+        <FriendList friends={userFreinds} />
+      </Dialog>
     </>
   );
 };

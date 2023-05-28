@@ -1,7 +1,6 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import styled from '@emotion/styled';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 import arrow from '../../assets/arrow.svg';
 
@@ -33,11 +32,10 @@ const Img = styled.img`
 
 interface SelectButtonPrps {
   value: string;
-  flag: string;
   onChange: (value: string) => void;
 }
 
-export const SelectButton = ({ value, flag, onChange }: SelectButtonPrps) => {
+export const SelectButton = ({ value, onChange }: SelectButtonPrps) => {
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     onChange(event.target.value as string);
   };

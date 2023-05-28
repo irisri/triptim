@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { flightInformation } from '../utils/date';
-
 import { FlightInformationComponent } from './flightInformation';
 
 import traval from '../assets/traval.svg';

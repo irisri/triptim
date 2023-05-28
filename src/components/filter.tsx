@@ -1,10 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
+import { Dialog, DialogContent } from '@mui/material';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
+import 'react-calendar/dist/Calendar.css';
 
 import { FilterIcon } from '../assets/filterIcon';
 import { CityPicker } from './cityPicker';

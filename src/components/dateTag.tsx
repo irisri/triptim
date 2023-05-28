@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { TagDataProps } from '../utils/date';
-
 import { TagText } from '../components/styledComponent/tagText.styled';
+
 import more from '../assets/more.svg';
 
 interface DataTagProps {

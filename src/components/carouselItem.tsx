@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 import { tagData, travalTagData, TagDataProps } from '../utils/date';
 
@@ -144,7 +144,7 @@ export const CarouselItem = ({ index, isUserProfile }: CarouselItemProps) => {
   const travalTags: TagDataProps[] =
     travalTagData.length > 5
       ? [
-          ...travalTagData.slice(0, 5),
+          ...travalTagData.slice(0, 4),
           {
             iconName: 'more',
           },

@@ -29,5 +29,5 @@ export const CityPicker = ({ city, setCity }: CityPickerProps) => {
     fetchData();
   }, []);
 
-  return <SelectButton flag={flag} value={city} onChange={setCity} />;
+  return <SelectButton value={city} onChange={setCity} />;
 };
