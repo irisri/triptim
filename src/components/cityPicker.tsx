@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SelectButton } from './styledComponent/selectButton.styled';
 
 interface CityPickerProps {
@@ -7,27 +7,5 @@ interface CityPickerProps {
 }
 
 export const CityPicker = ({ city, setCity }: CityPickerProps) => {
-  const [flag, setFlag] = useState('');
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      fetch('https://countriesnow.space/api/v0.1/countries/flag/images', {
-        method: 'POST',
-        body: JSON.stringify({
-          iso2: 'ES',
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((response) => {
-        response.json().then((response) => {
-          setFlag(response.data.flag);
-        });
-      });
-    };
-
-    fetchData();
-  }, []);
-
   return <SelectButton value={city} onChange={setCity} />;
 };
